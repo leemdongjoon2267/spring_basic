@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--static에서는 html파일 그대로 return 가능-->
+<!--spring에서는 먼저 static경로에 있는지 찾고, 없으면 controller에서 뒤진다-->
+<!--그래서 localhost:8080/hello.html이 만약 static에 있으면 해당 파일 return-->
+  <head>
+      <meta charset="UTF-8">
+      <title>Hello World</title>
+  </head>
+  <body>
+    <button onclick="fetchHello()">Get Hello</button>
+    <p id="getdata"></p>
+    <script>
+        function fetchHello(){
+            fetch('http://localhost:8080/hello')
+               .then(response => response.text())
+               .then(text => document.getElementById('getdata').innerHTML = text)
+               .catch(error => console.error(error))
+               }
+    </script>
+  </body>
+</html>
