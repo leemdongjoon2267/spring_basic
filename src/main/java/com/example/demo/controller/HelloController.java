@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -25,5 +27,28 @@ public class HelloController {
     public String hello2(Model model){
         model.addAttribute("getdata","hello2 world");
         return "hello";
+    }
+    //    json으로 post요청이들어왔을때는 data를꺼내기 위해 RequestBody 사용
+    @PostMapping("hello-json")
+    @ResponseBody
+    public String helloJson(@RequestBody Hello hello){
+        System.out.println("이름 : "+hello.getName());
+        System.out.println("이메일 : "+hello.getEmail());
+        System.out.println("비밀번호 : "+hello.getPassword());
+        return "ok";
+    }
+
+    //    ResponseBody 어노테이션이 붙어 있고, return타입이 객체이면 spring이 json형태로 변환해준다
+    @PostMapping("hello-json-response")
+    @ResponseBody
+    public GoodBye helloJsonResponse(@RequestBody Hello hello){
+        System.out.println("이름 : "+hello.getName());
+        System.out.println("이메일 : "+hello.getEmail());
+        System.out.println("비밀번호 : "+hello.getPassword());
+        GoodBye goodBye1 = new GoodBye();
+        goodBye1.setName(hello.getName());
+        goodBye1.setEmail(hello.getEmail());
+        goodBye1.setComments("Thank you");
+        return goodBye1;
     }
 }
