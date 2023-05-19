@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
+
+
 @Controller
 public class HelloController {
 
@@ -59,6 +62,25 @@ public class HelloController {
     @ResponseBody
     public String helloParameter(@RequestParam(value="test")String mytest){
         System.out.println("클라이언트가 보내온 parameter는? " +mytest);
+        return "ok";
+    }
+
+    @GetMapping("user1")
+    @ResponseBody
+    public String user1(@RequestParam(value="id")String myId) throws AccessDeniedException {
+        if(true){
+            throw new AccessDeniedException("권한이 없습니다.");
+        }
+        System.out.println("ID는? "+myId);
+
+        return "ok";
+    }
+
+    @GetMapping("user2")
+    @ResponseBody
+    public String user2(@PathVariable(value="id")String myId){
+        System.out.println("ID는? "+myId);
+
         return "ok";
     }
 //    사용자가 서버로 데이터를 보내는 방식에는 총3가지가 있다.
