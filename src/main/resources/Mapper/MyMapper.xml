@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--아래 경로는 mybatis repository 파일의 위치를 명시하는 것-->
+<mapper namespace="com.example.demo.repository.MemberMybatisRepository">
+    <insert id="save">
+        inset into member(name, email, password) values(#{name}, #{email}, #{password});
+    </insert>
+    <select id="findAll" resultType="com.example.demo.domain.Member">
+        select * from member;
+    </select>
+
+    <select id="findById" resultType="com.example.demo.domain.Member" parameterType="Long">
+        select * from member where id = #{id};
+    </select>
+
+</mapper>

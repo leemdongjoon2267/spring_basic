@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Member List</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th :each="member : ${memberlist}">
+                    <td th :text="${member.id"}></td>
+                    <td th :text="${member.name"}></td>
+                    <td th :text="${member.email"}></td>
+                    <td>
+                        <a th :herf="@{/member?id=${member.id}}">View Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
