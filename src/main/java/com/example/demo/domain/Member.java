@@ -29,4 +29,23 @@ public class Member {
 
     public void setPassword(String s) {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setId(long parseLong) {
+    }
 }

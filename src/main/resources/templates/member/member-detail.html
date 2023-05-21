@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Member Details</title>
+    <style>
+        #updateForm {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Memebr Details</h1>
+<h1>Member Details</h1>
+<button onclick="showUpdateForm()">수정</button>
 <table>
     <tr>
         <th>ID</th>
@@ -14,11 +20,33 @@
         <th>Password</th>
     </tr>
     <tr>
-        <td th :text="${member.id"></td>
-        <td th :text="${member.name"></td>
-        <td th :text="${member.email"></td>
-        <td th :text="${member.password"></td>
+        <td th:text="${member.id}"></td>
+        <td th:text="${member.name}"></td>
+        <td th:text="${member.email}"></td>
+        <td th:text="${member.password}"></td>
     </tr>
 </table>
+
+<div id="updateForm">
+    <h2>Update Member Details</h2>
+    <form action="member/update" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="id" name="name" th:value="${member.id}">readonly<br>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" th:value="${member.name}"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" th:value="${member.email}"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" th:value="${member.password}"><br>
+        <input type="submit" value="수정완료">
+    </form>
+</div>
+
+<script>
+function showUpdateForm() {
+    document.getElementById('updateForm').style.display = 'block';
+}
+</script>
+
 </body>
 </html>
