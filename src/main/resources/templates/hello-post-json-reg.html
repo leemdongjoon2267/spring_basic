@@ -1,17 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>회원가입</title>
+  <title>JSON 데이터 전송하기</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+      $(document).ready(function() {
+        // 폼이 제출될 때 실행될 함수
+        $("#my-form").submit(function(event) {
+          // 폼 제출을 막음
+          event.preventDefault();
+
+          // JSON 데이터 생성
+          var data = {
+            name: $("#name").val(),
+            email: $("#email").val(),
+            password: $("#password").val()
+          };
+
+          // AJAX 요청 생성
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/hello-json",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(response) {
+              console.log(response);
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
+        });
+      });
+    </script>
 </head>
 <body>
 <form id="my-form">
-  <label>이름</label>
-  <input type="text" name="name"><br>
-  <label>이메일</label>
-  <input type="text" name="email"><br>
-  <label>비밀번호</label>
-  <input type="password" name="password"><br>
+  <label>이름:</label>
+  <input type="text" id="name" name="name"><br><br>
+  <label>이메일:</label>
+  <input type="text" id="email" name="email"><br><br>
+  <label>패스워드:</label>
+  <input type="password" id="password" name="password"><br><br>
   <input type="submit" value="제출">
 </form>
 </body>

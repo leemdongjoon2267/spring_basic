@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Hello World</title>
 </head>
 <body>
-
+<button onclick="fetchHello()">Get Hello</button>
+<p id="getdata"></p>
+<script>
+        function fetchHello(){
+            fetch('http://localhost:8080/hello')
+               .then(response => response.text())
+               .then(text => document.getElementById('getdata').innerHTML = text)
+               .catch(error => console.error(error))
+               }
+    </script>
 </body>
 </html>
