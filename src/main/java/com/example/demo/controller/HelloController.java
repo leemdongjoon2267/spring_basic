@@ -16,9 +16,11 @@ public class HelloController {
 //    data만을 return할때는 ResponseBody를 사용한다.
     @GetMapping("hello") // 데이터만 리턴
     @ResponseBody
-    public String hello(){
+    public String hello(@RequestParam(value = "num1")String num1,
+                        @RequestParam(value = "num2")String num2){
+        int result = Integer.parseInt(num1)/Integer.parseInt(num2);
 
-        return "hello world";
+        return String.valueOf(result);
     }
 
     @GetMapping("hello2")

@@ -13,7 +13,11 @@ spring:
     #    jpa 설정. ddl을 자동으로 적용하겠다는 설정
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+#      create 옵션은 매번 table을 drop후 create
+#      update 옵션은 변경사항만 alter을 적용
+#      현업에서는 validate 옵션으로 검증만 하는 경우가 대다수
+      ddl-auto: update
+#      ddl-auto: create
     #    jpa가 자동으로 쿼리를 생성할때, 쿼리가 console창에 보여지도록 하는 설정.
     show_sql: true
 

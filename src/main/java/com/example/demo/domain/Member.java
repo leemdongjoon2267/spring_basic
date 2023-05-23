@@ -16,36 +16,30 @@ public class Member {
 
 //    String은 varchar로 변환되어 생성된다.
     private String name;
-
     private String email;
-
     private String password;
-
-    public void setName(String hong) {
-    }
-
-    public void setEmail(String s) {
-    }
-
-    public void setPassword(String s) {
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    public void setId(long parseLong) {
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

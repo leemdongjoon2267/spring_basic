@@ -28,9 +28,8 @@ public class MemberService {
     @Autowired
     private MemberJdbcRepository memberJdbcRepository;
 
-//    회원가입(목록)
-    public void create(Member member) throws SQLException {
-        System.out.println("memberJdbcRepository test");
+//    회원가입(등록)
+    public void create(Member member) {
         memberRepository.save(member);
     }
 
@@ -38,11 +37,16 @@ public class MemberService {
 //    memberRepository.findAll()의 기본 return 타입은 List<해당객체>
     public List<Member> findAll(){
         List<Member> members = memberRepository.findAll();
+//        for(Member m :members){
+//            System.out.println(m.getName());
+//            System.out.println(m.getEmail());
+//            System.out.println(m.getPassword());
+//        }
         return members;
     }
 
-    public Member findById(Long id){
-        Member member = memberRepository.findById(id).orElse(null);
+    public Member findById(Long myId){
+        Member member = memberRepository.findById(myId).orElse(null);
         return member;
     }
 
