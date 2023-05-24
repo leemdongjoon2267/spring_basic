@@ -31,7 +31,13 @@ public class MemberController {
 //        return "ok";
 //}
 
-    @PostMapping("members")
+    @GetMapping("members/new") //@PostMapping(members)랑 겹쳐도 상관없음
+    @ResponseBody
+    public String memberCreateForm(){
+        return "member/member-register";
+    }
+
+    @PostMapping("members/new")
 //    @ResponseBody
 //    input값을 form-data로 받는 형식
     public String memberCreate(@RequestParam(value = "name")String myName,
@@ -47,27 +53,23 @@ public class MemberController {
     }
 
 
-
+//    목록조회
     @GetMapping("members") //@PostMapping(members)랑 겹쳐도 상관없음
-    @ResponseBody
-    public List<Member> memberFindAll(){
+    public String memberFindAll(Model model){
         List<Member> members = memberService.findAll();
-        return members;
+        model.addAttribute("memberList", members);
+        return "member/member-list";
     }
 
     @GetMapping("member")
-    @ResponseBody
     //@ResponseBody가 있고 return타입이 String이면 문자로 리턴
     // @ResponseBody있고 return타입이객체면 json으로 리턴
-    public Member memberFindById(@RequestParam(value = "id")Long myId){
+    public String memberFindById(@RequestParam(value = "id")Long myId, Model model){
         Member member = memberService.findById(myId);
-        return member;
+        model.addAttribute("member", member);
+        return "member/member-detail";
     }
 
-    @GetMapping("members/new")
-    public String memberCreateForm(){
-        return "member/member-register";
-    }
 
 //    @PostMapping("members/new")
 //    @ResponseBody
@@ -78,16 +80,6 @@ public class MemberController {
 //        Member member1 = new Member();
 //        return myName;
 //    }
-
-    @GetMapping("member")
-    @ResponseBody
-    public String memberFindById(@RequestParam(value = "id")Long myId, Model model){
-        Member member = memberService.findById((myId));
-        model.addAttribute("member", member);
-
-        return "member/member-detail";
-    }
-
 
     @GetMapping("/")
     public String home(){

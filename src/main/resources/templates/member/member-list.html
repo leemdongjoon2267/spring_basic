@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Member List</title>
     </head>
     <body>
         <h1>Member List</h1>
@@ -15,7 +15,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr th :each="member : ${memberlist}">
+                <tr th :each="member : ${memberList}">
                     <td th :text="${member.id"}></td>
                     <td th :text="${member.name"}></td>
                     <td th :text="${member.email"}></td>
