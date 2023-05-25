@@ -38,7 +38,7 @@ public class MemberController {
     }
 
     @PostMapping("members/new")
-//    @ResponseBody
+    @ResponseBody
 //    input값을 form-data로 받는 형식
     public String memberCreate(@RequestParam(value = "name")String myName,
                                @RequestParam(value = "email")String email,
@@ -70,33 +70,11 @@ public class MemberController {
         return "member/member-detail";
     }
 
-
-//    @PostMapping("members/new")
-//    @ResponseBody
-//    public String memberCreate(@RequestParam(value = "name")String myName,
-//                               @RequestParam(value = "email")String myEmail,
-//                               @RequestParam(value = "password")String myPassword
-//                                ){
-//        Member member1 = new Member();
-//        return myName;
-//    }
-
-    @GetMapping("/")
-    public String home(){
-        return "member/member-home";
+    @GetMapping("member-json")
+    @ResponseBody
+    public Member memberFindByJson(@RequestParam(value = "id")Long myId){
+        Member member = memberService.findById(myId);
+        return member;
     }
 
-    @PostMapping("member/update")
-    public String memberUpdate(@RequestParam(value = "id")String myId,
-                               @RequestParam(value = "name")String myName,
-                               @RequestParam(value = "email")String email,
-                               @RequestParam(value = "password")String password) throws Exception {
-        Member member1 = new Member();
-        member1.setId(Long.parseLong(myId));
-        member1.setName(myName);
-        member1.setEmail(email);
-        member1.setPassword(password);
-        memberService.update((member1));
-        return "redirect:/";
-    }
 }
