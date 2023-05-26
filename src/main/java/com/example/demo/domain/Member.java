@@ -47,4 +47,7 @@ public class Member {
     public Long getId() {
         return id;
     }
+
+    public void setId(long parseLong) {
+    }
 }

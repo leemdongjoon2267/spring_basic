@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller()
@@ -26,7 +27,7 @@ public class MemberJsonController {
 //    input값을 form-data로 받는 형식
     public String memberCreate(@RequestParam(value = "name")String myName,
                                @RequestParam(value = "email")String email,
-                               @RequestParam(value = "password")String password){
+                               @RequestParam(value = "password")String password) throws SQLException {
 //        Member객체를 만들어서 MemberService 매개변수로 전달
         Member member1 = new Member();
         member1.setName(myName);

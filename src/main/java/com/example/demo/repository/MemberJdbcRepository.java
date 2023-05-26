@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class MemberJdbcRepository {
 
-//    Datasourve는 JDBC에서 사용하는 DB 연결 드라이버
+//    Datasource는 JDBC에서 사용하는 DB 연결 드라이버
     @Autowired
     private DataSource dataSource;
 

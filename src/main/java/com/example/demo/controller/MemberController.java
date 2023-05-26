@@ -38,18 +38,22 @@ public class MemberController {
     }
 
     @PostMapping("members/new")
-    @ResponseBody
+//    @ResponseBody
 //    input값을 form-data로 받는 형식
     public String memberCreate(@RequestParam(value = "name")String myName,
                                @RequestParam(value = "email")String email,
-                               @RequestParam(value = "password")String password){
+                               @RequestParam(value = "password")String password) throws SQLException {
 //        Member객체를 만들어서 MemberService 매개변수로 전달
         Member member1 = new Member();
         member1.setName(myName);
         member1.setEmail(email);
         member1.setPassword(password);
+//        Member 는 class를 new하여 객체를 만드는 반면에
+//        MemberService는 객체를 만들지 않고, 바로 사용하고 있다.
+//        이는 MemberService는 Component를 통해 싱글톤으로 만들어져 있기 때문
+//        싱글톤으로 만들어진 Component는 객체를 생성하는것이 아니라 주입(DI)를 받아 사용
         memberService.create(member1);
-        return "ok";
+        return "redirect:/"; // 이 화면을 찾아가라
     }
 
 
@@ -70,11 +74,31 @@ public class MemberController {
         return "member/member-detail";
     }
 
-    @GetMapping("member-json")
-    @ResponseBody
-    public Member memberFindByJson(@RequestParam(value = "id")Long myId){
-        Member member = memberService.findById(myId);
-        return member;
+    @GetMapping("/")
+    public String home(){
+
+        return "member/member-home";
     }
 
-}
+    @GetMapping("member/update")
+    public String memberUpdate(@RequestParam(value = "id")String myId,
+                               @RequestParam(value = "name")String myname,
+                               @RequestParam(value = "email")String email,
+                               @RequestParam(value = "password")String password) throws Exception {
+        Member member1 = new Member();
+        member1.setId(Long.parseLong(myId));
+        member1.setName(myname);
+        member1.setEmail(email);
+        member1.setPassword(password);
+        memberService.update(member1);
+        return "redirect:/";
+    }
+
+//    @GetMapping("member-json")
+//    @ResponseBody
+//    public Member memberFindByJson(@RequestParam(value = "id")Long myId){
+//        Member member = memberService.findById(myId);
+//        return member;
+    }
+
+

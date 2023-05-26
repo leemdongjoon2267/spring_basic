@@ -15,5 +15,6 @@ public interface MemberMybatisRepository {
 //    findAll, findById
      List<Member> findAll();
      Member findById(Long id);
+//     그냥MemeberRepository로 할때는 Optional<>을 해줘야함
 
 }
