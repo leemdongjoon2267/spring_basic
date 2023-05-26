@@ -143,11 +143,7 @@ public class HelloController {
         return "ok";
     }
 //    .jsp 파일의 기본경로는 resources/webapp/WEB-INF/views
-    @GetMapping("hello-jsp")
-    public String helloJsp(Model model){
-        model.addAttribute("getdata","jsp message");
-        return "hello-jsp";
-    }
+
 
 
 

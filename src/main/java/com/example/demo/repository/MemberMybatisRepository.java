@@ -13,7 +13,7 @@ public interface MemberMybatisRepository {
 //    JPA와는 다르게, 사용하고자 하는 메서드를 사전에 정의해야 한다.
     void save(Member member);
 //    findAll, findById
-    public List<Member> FindAll();
-         Member findById(Long id);
+     List<Member> findAll();
+     Member findById(Long id);
 
 }
